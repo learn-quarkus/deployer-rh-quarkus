@@ -1,8 +1,5 @@
 ---
 
-- name: Configure Nodes for ODF
-  ansible.builtin.include_tasks: odf_setup.yaml
-
 - name: Create CatalogSource Index 4.19
   k8s:
     state: present
@@ -14,14 +11,11 @@
   - redhat-operators-index.yaml
   - community-operators-index.yaml
 
-- name: Configure workshop support access
-  ansible.builtin.include_tasks: workshop-admins.yml
-
 - name: Install Showroom
   ansible.builtin.include_tasks: showroom.yml
 
-- name: Install OpenShift Gitops
-  ansible.builtin.include_tasks: openshift_gitops.yml
+#- name: Install OpenShift Gitops
+#  ansible.builtin.include_tasks: openshift_gitops.yml
 
 - name: Install Namespace Configuration Operator
   ansible.builtin.include_tasks: namespaces_operator.yml
@@ -32,13 +26,11 @@
     - merge
     definition: "{{ lookup('file', 'kubernetes-imagepuller-operator_subscription.yaml' ) }}"
 
-- name: Install ArgoCD Apps
-  ansible.builtin.include_tasks: argo-apps.yml
+#- name: Install ArgoCD Apps
+#  ansible.builtin.include_tasks: argo-apps.yml
 
-- name: Install Advanced workshop deps
-  include_tasks: install-advanced.yml
-  when:
-    - advanced_workshop_enabled | default(false) | bool
+- name: Install CRDs
+  include_tasks: install_crds.yml
 
 - name: Install Dev Spaces operator and CheCluster
   ansible.builtin.include_tasks: devspaces_operator.yml

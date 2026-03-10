@@ -3,7 +3,7 @@ kind: UserConfig
 metadata:
   name: ns-user-config
 spec:
-  providerName: IBMid
+  providerName: rhbk
   templates:
     - objectTemplate: |
         apiVersion: project.openshift.io/v1
@@ -11,10 +11,9 @@ spec:
         metadata:
           name: {{ .Name | replace "@" "-" | replace "." "-" | lower }}-project
           labels:
-            ibm_user_project: "True"
+            quarkus_user_project: "True"
           annotations:
             openshift.io/requester: {{ .Name }}
             project_basename: {{ .Name | replace "@" "-" | replace "." "-" | lower }}
-            user_email: {{ .Name }}
             openshift.io/display-name: {{ .Name | replace "@" "-" | replace "." "-" | lower }}-project
             openshift.io/description: "Quarkus Fundamentals workshop project"

@@ -1,6 +1,4 @@
 ---
-- name: install rhbk
-  include_tasks: install-rhbk.yaml
 
   # Install  AMQ Streams for all workspaces
 - name: Look for amq subscription
