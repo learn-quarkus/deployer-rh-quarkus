@@ -2,6 +2,7 @@ become_override: false
 
 silent: false
 num_users: 1
+guid: quarkus
 
 ocp4_workload_authentication_htpasswd_user_base: user
 ocp4_workload_authentication_htpasswd_user_count: 1

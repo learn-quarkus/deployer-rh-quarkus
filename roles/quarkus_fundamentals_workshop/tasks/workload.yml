@@ -1,6 +1,6 @@
 ---
 
-- name: Create CatalogSource Index 4.19
+- name: Create CatalogSource Index 4.20
   k8s:
     state: present
     merge_type:
